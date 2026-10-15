@@ -1,0 +1,14 @@
+.DS_Store
+
+# SwiftPM 构建产物
+.build/
+Lumi/.build/
+.swiftpm/
+
+# 本地凭证与令牌（绝不提交）
+tools/.env
+tools/.baidu-token.json
+*.local.json
+
+# 早期产品探索文档（含第三方解析生态分析，公开发布前请自行评估）
+docs/product-exploration.md

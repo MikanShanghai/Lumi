@@ -1,0 +1,93 @@
+/* 星幕 · 设计预览 · 共用样式（Apple 设计语言 · 深色材质版） */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --text:#f5f5f7;
+  --sub:rgba(235,235,245,.62);
+  --ter:rgba(235,235,245,.36);
+  --line:rgba(255,255,255,.08);
+  --accent:#0a84ff;
+  --green:#30d158;
+  --r-win:14px;
+}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",Arial,sans-serif;
+  color:var(--text);background:#05060a;position:relative;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.wall{position:absolute;inset:0;background:
+  radial-gradient(900px 640px at 10% 6%,rgba(88,62,190,.50),transparent 62%),
+  radial-gradient(1100px 780px at 92% 100%,rgba(255,120,40,.26),transparent 60%),
+  radial-gradient(780px 560px at 72% 8%,rgba(28,118,224,.30),transparent 64%),
+  linear-gradient(152deg,#0b0c15 0%,#151021 55%,#1b0f1d 100%);}
+.window{position:absolute;left:32px;top:32px;width:1376px;height:836px;border-radius:var(--r-win);overflow:hidden;
+  background:rgba(22,22,27,.58);backdrop-filter:blur(56px) saturate(150%);
+  box-shadow:0 42px 96px rgba(0,0,0,.62),0 0 0 .5px rgba(255,255,255,.13),0 1px 0 rgba(255,255,255,.06) inset;
+  display:flex;}
+.lights{display:flex;gap:8px}
+.light{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.25)}
+.light.r{background:#ff5f57}.light.y{background:#febc2e}.light.g{background:#28c840}
+
+/* ---- 侧边栏 ---- */
+.sidebar{width:236px;flex:0 0 236px;border-right:.5px solid var(--line);background:rgba(255,255,255,.045);display:flex;flex-direction:column;padding:0 12px 12px}
+.sidebar .top{padding:16px 6px 0}
+.brand{display:flex;align-items:center;gap:10px;padding:18px 8px 16px}
+.brand .logo{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(150deg,#0a84ff,#5e5ce6);box-shadow:0 3px 10px rgba(10,132,255,.42),inset 0 .5px 0 rgba(255,255,255,.35)}
+.brand .logo svg{width:12px;height:12px;fill:#fff}
+.brand .name{font-size:14px;font-weight:650;letter-spacing:.2px}
+.brand .ver{font-size:10.5px;color:var(--ter);margin-left:auto}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav .label{font-size:11px;font-weight:600;color:var(--ter);letter-spacing:.5px;padding:14px 10px 6px}
+.item{display:flex;align-items:center;gap:10px;height:30px;padding:0 10px;border-radius:8px;font-size:13px;color:var(--sub);font-weight:500}
+.item svg{width:16px;height:16px;flex:0 0 16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.item.active{background:rgba(255,255,255,.11);color:var(--text);box-shadow:0 0 0 .5px rgba(255,255,255,.07) inset}
+.item.active svg{color:var(--accent)}
+.item .dotg{margin-left:auto}
+.item .count{margin-left:auto;font-size:11px;color:var(--ter);font-variant-numeric:tabular-nums}
+.sidebar .grow{flex:1}
+.dotg{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(48,209,88,.9)}
+
+/* ---- 主区域 ---- */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative}
+.toolbar{display:flex;align-items:flex-end;gap:14px;padding:22px 28px 16px}
+.toolbar h1{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.toolbar .meta{font-size:12px;color:var(--sub);padding-bottom:2px}
+.spacer{flex:1}
+.search{display:flex;align-items:center;gap:8px;height:30px;width:232px;padding:0 11px;border-radius:9px;background:rgba(255,255,255,.075);box-shadow:0 0 0 .5px rgba(255,255,255,.09) inset;color:var(--ter);font-size:12.5px}
+.search svg{width:13px;height:13px;stroke:var(--ter);fill:none;stroke-width:1.8;flex:0 0 13px}
+
+/* ---- 通用小件 ---- */
+.iconbtn{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:rgba(255,255,255,.07);box-shadow:0 0 0 .5px rgba(255,255,255,.08) inset;flex:0 0 auto}
+.iconbtn svg{width:15px;height:15px;stroke:var(--text);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.chip{height:26px;padding:0 10px;border-radius:8px;background:rgba(255,255,255,.09);box-shadow:0 0 0 .5px rgba(255,255,255,.07) inset;display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--sub);flex:0 0 auto}
+.chip b{color:var(--text);font-weight:600}
+.tag{display:inline-flex;align-items:center;height:17px;padding:0 6px;border-radius:5px;font-size:10px;font-weight:600;letter-spacing:.2px;color:rgba(235,235,245,.8);background:rgba(255,255,255,.10);box-shadow:0 0 0 .5px rgba(255,255,255,.08) inset}
+.tag.blue{color:#9ccfff;background:rgba(10,132,255,.18);box-shadow:0 0 0 .5px rgba(10,132,255,.35) inset}
+.tag.green{color:#9fe8b5;background:rgba(48,209,88,.16);box-shadow:0 0 0 .5px rgba(48,209,88,.3) inset}
+
+/* ---- 封面渐变（设计示意用） ---- */
+.art{position:relative;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.09),0 12px 26px rgba(0,0,0,.38)}
+.art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 34%),radial-gradient(120% 80% at 20% 108%,rgba(0,0,0,.5),transparent 60%)}
+.g1{background:radial-gradient(120% 90% at 30% 0%,#ffd9a0 0%,#e08a3c 24%,#7a3413 58%,#1c0d08 100%)}
+.g2{background:radial-gradient(110% 95% at 68% 18%,#ff9d4d 0%,#8a2f16 20%,#123634 58%,#051012 100%)}
+.g3{background:radial-gradient(130% 100% at 25% 0%,#d5546b 0%,#701c2e 48%,#2a0910 100%)}
+.g4{background:linear-gradient(140deg,#ff8a3d 0%,#d23369 42%,#45125e 78%,#170a26 100%)}
+.g5{background:radial-gradient(120% 110% at 30% 8%,#eaf3ff 0%,#8fb4dd 28%,#2c4a74 62%,#0a1526 100%)}
+.g6{background:radial-gradient(130% 100% at 60% 0%,#ffe3a1 0%,#d9a13f 36%,#6b3d16 72%,#241206 100%)}
+.g7{background:radial-gradient(120% 100% at 30% 10%,#9ad8ff 0%,#2b6da8 44%,#081a2c 100%)}
+.g8{background:linear-gradient(150deg,#ffcf5c 0%,#ef6a3a 52%,#7a1d12 100%)}
+
+/* ---- 底部迷你播放条 ---- */
+.mini{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:560px;height:62px;border-radius:16px;
+  background:rgba(30,30,36,.74);backdrop-filter:blur(34px) saturate(180%);
+  box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 .5px rgba(255,255,255,.14),0 1px 0 rgba(255,255,255,.08) inset;
+  display:flex;align-items:center;gap:12px;padding:0 12px;overflow:hidden}
+.mini .mt{width:86px;height:48px;border-radius:9px;flex:0 0 86px}
+.mini .mi{min-width:0;flex:1}
+.mini .mtitle{font-size:12.5px;font-weight:650}
+.mini .msub{font-size:11px;color:var(--sub);margin-top:2px;font-variant-numeric:tabular-nums}
+.mini .prog{position:absolute;left:12px;right:12px;bottom:0;height:2.5px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden}
+.mini .prog i{display:block;height:100%;width:42%;background:var(--accent)}
+.pp-white{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:0 0 auto;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.pp-white svg{width:13px;height:13px;fill:#000;margin-left:1px}

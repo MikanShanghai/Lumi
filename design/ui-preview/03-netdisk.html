@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>星幕 · 百度网盘</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  .acct{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--sub);padding-bottom:2px}
+  .acct b{color:var(--text);font-weight:600}
+  .cap{font-size:11.5px;color:var(--ter);font-variant-numeric:tabular-nums;padding-bottom:3px}
+  .capbar{width:118px;height:4px;border-radius:2px;background:rgba(255,255,255,.18);margin-bottom:6px}
+  .capbar i{display:block;height:100%;width:24%;border-radius:2px;background:linear-gradient(90deg,#0a84ff,#5ac8fa)}
+  .crumbs{display:flex;align-items:center;gap:8px;padding:0 28px 12px;font-size:12.5px;color:var(--sub)}
+  .crumbs b{color:var(--text);font-weight:600}
+  .crumbs .sep{color:var(--ter)}
+  .crumbs svg{width:15px;height:15px;stroke:var(--sub);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .listhead{display:flex;align-items:center;gap:14px;padding:0 38px 8px;font-size:11px;color:var(--ter);font-weight:600;letter-spacing:.3px}
+  .rows{flex:1;padding:0 18px;overflow:hidden}
+  .row{display:flex;align-items:center;gap:14px;height:56px;padding:0 10px;border-radius:10px}
+  .row.hot{background:rgba(255,255,255,.07);box-shadow:0 0 0 .5px rgba(255,255,255,.06) inset}
+  .rt{width:64px;height:36px;border-radius:7px;flex:0 0 64px}
+  .rn{flex:1;min-width:0}
+  .name{font-size:13px;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:540px}
+  .tags{margin-top:4px;display:flex;gap:5px}
+  .c-size{width:86px;flex:0 0 86px;text-align:right;font-size:12.5px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .c-date{width:112px;flex:0 0 112px;text-align:left;font-size:12px;color:var(--ter);font-variant-numeric:tabular-nums}
+  .c-act{width:72px;flex:0 0 72px;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+  .playmini{width:28px;height:28px;border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 4px 12px rgba(10,132,255,.4)}
+  .playmini svg{width:10px;height:10px;fill:#fff;margin-left:1px}
+  .mute{opacity:.45}
+  .bottombar{display:flex;align-items:center;gap:12px;padding:14px 28px 18px;font-size:12px;color:var(--ter)}
+  .primarybtn{height:30px;padding:0 14px;border-radius:9px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:600;display:inline-flex;align-items:center;gap:7px;box-shadow:0 6px 16px rgba(10,132,255,.35)}
+  .primarybtn svg{width:10px;height:10px;fill:#fff}
+</style>
+</head>
+<body>
+<div class="wall"></div>
+<div class="window">
+  <aside class="sidebar">
+    <div class="top"><div class="lights"><i class="light r"></i><i class="light y"></i><i class="light g"></i></div></div>
+    <div class="brand">
+      <div class="logo"><svg viewBox="0 0 16 16"><path d="M4.5 2.8v10.4l8.6-5.2-8.6-5.2z"/></svg></div>
+      <div class="name">星幕</div><div class="ver">v0.1</div>
+    </div>
+    <nav class="nav">
+      <div class="label">媒体库</div>
+      <div class="item"><svg viewBox="0 0 16 16"><path d="M2.5 6.8 8 2.6l5.5 4.2v6.2h-11z"/><path d="M6.6 13v-3.4h2.8V13"/></svg>首页</div>
+      <div class="item"><svg viewBox="0 0 16 16"><rect x="2.5" y="3.8" width="11" height="8.4" rx="2"/><path d="M5.6 3.8v8.4M10.4 3.8v8.4"/></svg>电影<span class="count">86</span></div>
+      <div class="item"><svg viewBox="0 0 16 16"><rect x="2.5" y="3.4" width="11" height="7.6" rx="2"/><path d="M6.2 13.6h3.6"/></svg>剧集<span class="count">42</span></div>
+      <div class="item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><path d="M8 5.1V8l2.1 1.5"/></svg>最近播放</div>
+      <div class="label">来源</div>
+      <div class="item"><svg viewBox="0 0 16 16"><path d="M2.6 5.6c0-1 .8-1.8 1.8-1.8h2.3l1.5 1.6h5.4c1 0 1.8.8 1.8 1.8v4.3c0 1-.8 1.8-1.8 1.8H4.4c-1 0-1.8-.8-1.8-1.8z"/></svg>本地文件</div>
+      <div class="item active"><svg viewBox="0 0 16 16"><path d="M5 11.6h6.3a2.35 2.35 0 0 0 .3-4.7 3.5 3.5 0 0 0-6.7-.9A2.65 2.65 0 0 0 5 11.6z"/></svg>百度网盘<i class="dotg"></i></div>
+      <div class="item"><svg viewBox="0 0 16 16"><path d="M6.6 9.4 4.2 11.8a2.2 2.2 0 0 1-3.1-3.1l2.4-2.4"/><path d="M9.4 6.6l2.4-2.4a2.2 2.2 0 0 1 3.1 3.1l-2.4 2.4"/><path d="M6.2 9.8l3.6-3.6"/></svg>WebDAV</div>
+      <div class="item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.6"/><path d="M8 5.4v5.2M5.4 8h5.2"/></svg>添加来源</div>
+    </nav>
+    <div class="grow"></div>
+    <nav class="nav">
+      <div class="item"><svg viewBox="0 0 16 16"><path d="M2.8 5h10.4M2.8 11h10.4"/><circle cx="6" cy="5" r="1.6"/><circle cx="10.2" cy="11" r="1.6"/></svg>设置</div>
+    </nav>
+  </aside>
+  <main class="main">
+    <header class="toolbar">
+      <h1>百度网盘</h1>
+      <span class="acct"><i class="dotg"></i>已连接 <b>185****0271</b></span>
+      <span class="cap">1.2 TB / 5 TB</span>
+      <div class="capbar"><i></i></div>
+      <div class="spacer"></div>
+      <div class="search"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.6"/><path d="M10.4 10.4 13.6 13.6"/></svg>搜索网盘文件</div>
+      <div class="chip">按名称</div>
+      <div class="iconbtn"><svg viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.6-3.7"/><path d="M13.4 2.6v2.6h-2.6"/></svg></div>
+    </header>
+    <div class="crumbs">
+      <svg viewBox="0 0 16 16"><path d="M2.6 5.6c0-1 .8-1.8 1.8-1.8h2.3l1.5 1.6h5.4c1 0 1.8.8 1.8 1.8v4.3c0 1-.8 1.8-1.8 1.8H4.4c-1 0-1.8-.8-1.8-1.8z"/></svg>
+      <span>我的资源</span><span class="sep">›</span><b>电影</b>
+    </div>
+    <div class="listhead">
+      <span style="width:64px;flex:0 0 64px"></span>
+      <span style="flex:1">名称</span>
+      <span style="width:86px;flex:0 0 86px;text-align:right">大小</span>
+      <span style="width:112px;flex:0 0 112px">修改时间</span>
+      <span style="width:72px;flex:0 0 72px;text-align:right">操作</span>
+    </div>
+    <div class="rows">
+      <div class="row hot">
+        <div class="rt art g5"></div>
+        <div class="rn"><div class="name">星际穿越.Interstellar.2014.2160p.HDR.国英双语.mkv</div>
+          <div class="tags"><span class="tag blue">4K</span><span class="tag">HDR</span><span class="tag">内封字幕</span></div></div>
+        <div class="c-size">24.6 GB</div><div class="c-date">2026/10/12</div>
+        <div class="c-act"><button class="playmini"><svg viewBox="0 0 16 16"><path d="M5 2.8v10.4L13 8 5 2.8z"/></svg></button></div>
+      </div>
+      <div class="row">
+        <div class="rt art g1"></div>
+        <div class="rn"><div class="name">沙丘2.Dune.Part.Two.2024.2160p.WEB-DL.HDR.mkv</div>
+          <div class="tags"><span class="tag blue">4K</span><span class="tag">HDR</span></div></div>
+        <div class="c-size">18.2 GB</div><div class="c-date">2026/10/11</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g2"></div>
+        <div class="rn"><div class="name">奥本海默.Oppenheimer.2023.1080p.BluRay.x265.mkv</div>
+          <div class="tags"><span class="tag">1080P</span><span class="tag">内封字幕</span></div></div>
+        <div class="c-size">12.8 GB</div><div class="c-date">2026/10/09</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g6"></div>
+        <div class="rn"><div class="name">繁花.S01E01.2160p.国语中字.mkv</div>
+          <div class="tags"><span class="tag blue">4K</span></div></div>
+        <div class="c-size">6.4 GB</div><div class="c-date">2026/10/08</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g7"></div>
+        <div class="rn"><div class="name">三体.S01E08.1080p.HEVC.mkv</div>
+          <div class="tags"><span class="tag">HEVC</span></div></div>
+        <div class="c-size">3.1 GB</div><div class="c-date">2026/10/06</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g4"></div>
+        <div class="rn"><div class="name">银翼杀手2049.Blade.Runner.2049.2017.1080p.H265.mkv</div>
+          <div class="tags"><span class="tag">1080P</span><span class="tag">内封字幕</span></div></div>
+        <div class="c-size">9.6 GB</div><div class="c-date">2026/10/05</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g3"></div>
+        <div class="rn"><div class="name">花样年华.In.the.Mood.for.Love.2000.1080p.修复版.mkv</div>
+          <div class="tags"><span class="tag">修复版</span></div></div>
+        <div class="c-size">5.2 GB</div><div class="c-date">2026/10/03</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g8"></div>
+        <div class="rn"><div class="name">灌篮高手.THE.FIRST.SLAM.DUNK.2022.1080p.国配.mkv</div>
+          <div class="tags"><span class="tag">国配</span></div></div>
+        <div class="c-size">4.8 GB</div><div class="c-date">2026/09/30</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g1"></div>
+        <div class="rn"><div class="name">流浪地球2.The.Wandering.Earth.II.2023.4K.mkv</div>
+          <div class="tags"><span class="tag blue">4K</span></div></div>
+        <div class="c-size">15.4 GB</div><div class="c-date">2026/09/28</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g6"></div>
+        <div class="rn"><div class="name">漫长的季节.S01E01.2160p.国语.mkv</div>
+          <div class="tags"><span class="tag blue">4K</span></div></div>
+        <div class="c-size">7.2 GB</div><div class="c-date">2026/09/26</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+      <div class="row">
+        <div class="rt art g4"></div>
+        <div class="rn"><div class="name">瞬息全宇宙.Everything.Everywhere.2022.1080p.mkv</div>
+          <div class="tags"><span class="tag">1080P</span><span class="tag">内封字幕</span></div></div>
+        <div class="c-size">8.1 GB</div><div class="c-date">2026/09/24</div>
+        <div class="c-act"><div class="iconbtn mute"><svg viewBox="0 0 16 16"><circle cx="3.4" cy="8" r="1"/><circle cx="8" cy="8" r="1"/><circle cx="12.6" cy="8" r="1"/></svg></div></div>
+      </div>
+    </div>
+    <div class="bottombar">
+      本页 11 个视频 · 支持直接播放，无需下载
+      <div class="spacer"></div>
+      <button class="primarybtn"><svg viewBox="0 0 16 16"><path d="M5 2.8v10.4L13 8 5 2.8z"/></svg>播放全部</button>
+    </div>
+  </main>
+</div>
+</body>
+</html>
