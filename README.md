@@ -20,7 +20,17 @@ macOS 视频播放器：**本地媒体库 + 百度网盘直连播放**，Apple �
 - **播放内核 [AetherEngine](https://github.com/superuser404notfound/AetherEngine)**：MKV / MP4 / TS / AVI 等容器，H.264 / H.265 / AV1，HDR10 / 杜比视界 / HLG，SRT / ASS / PGS 字幕，多音轨切换，Atmos 直通
 - **播放器**：毛玻璃控制层——进度条拖动、±10 秒、0.5×–2× 倍速、字幕/音轨切换、全屏；快捷键 `空格` `←/→` `F` `Esc`
 
-## 安装与使用（源码分发）
+## 下载安装（推荐）
+
+到 [Releases](https://github.com/MikanShanghai/Lumi/releases) 下载最新的 `Lumi-x.x.x-macos.zip`：
+
+1. 解压后把 **Lumi.app** 拖进「应用程序」
+2. 首次打开如果提示"无法验证开发者"：在访达里**右键 → 打开**即可（本版本为 ad-hoc 签名，未做 Apple 公证）
+3. 首次使用按下面的「连接你的百度网盘」完成一次性配置
+
+构建包为通用二进制（Intel 与 Apple Silicon 均可），要求 **macOS 15+**。
+
+## 从源码构建
 
 **要求**：macOS 15+，Xcode 或 Command Line Tools（Swift 6.3+）
 
@@ -31,6 +41,14 @@ swift run Lumi
 ```
 
 首次编译会拉取 AetherEngine 及其二进制依赖（FFmpeg / 杜比视界 / TrueHD / DTS 等，约 1.2 GB），需要几分钟。
+
+打包成 `.app`（含图标与框架、ad-hoc 签名）：
+
+```bash
+swift build -c release                                   # x86_64
+swift build -c release --triple arm64-apple-macosx15.0   # arm64（可选，用于通用包）
+Scripts/package-app.sh                                   # 产出 dist/Lumi.app 与 zip
+```
 
 ### 连接你的百度网盘（一次性配置）
 

@@ -3,6 +3,7 @@
 # SwiftPM 构建产物
 .build/
 Lumi/.build/
+Lumi/dist/
 .swiftpm/
 
 # 本地凭证与令牌（绝不提交）
